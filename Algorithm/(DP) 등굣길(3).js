@@ -13,13 +13,18 @@ function solution(m, n, puddles) {
   
   for (let i = 1; i <= n; i++) {
       for (let j = 1; j <= m; j++) {
+          const puddle = puddles.some(x => String(x) === String([i, j]));
+          
           if (i === 1 || j === 1) {
-              // 직선 경로는 모두 1
-              dp[i][j] = 1;
+              // 직선 경로는 모두 1 또는 0만
+              dp[i][j] = puddle ? 0 : 1;
               continue;
           }
-          const puddle = puddles.some(x => String(x) === String([i, j]));
-          if (puddle) continue;
+
+          if (puddle) {
+              dp[i][j] = 0;
+              continue;
+          }
 
           dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
       }
