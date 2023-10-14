@@ -31,9 +31,9 @@ const dpTopDown = [0];
 
 function fibonacciTopDown(num) {
   if (num <= 2) return 1;
-  if (dp[num]) return dp[num];
-  dp[num] = fibonacci(num - 1) + fibonacci(num - 2);
-  return dp[num];
+  if (dpTopDown[num]) return dpTopDown[num];
+  dpTopDown[num] = fibonacciTopDown(num - 1) + fibonacciTopDown(num - 2);
+  return dpTopDown[num];
 }
 
 // 바텀업: 주로 반복문을 사용하여 구현한다.
@@ -41,9 +41,9 @@ const dpBottopUp = [0, 1, 1];
 
 function fibonacciBottopUp(num) {
   for (let i = 3; i <= num; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2];
+    dpBottopUp[i] = dpBottopUp[i - 1] + dpBottopUp[i - 2];
   }
-  return dp[num];
+  return dpBottopUp[num];
 }
 
 // 주어진 문제가 동적 계획법 유형임을 파악하는 것이 중요하다.. 
